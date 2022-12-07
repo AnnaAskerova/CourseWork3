@@ -1,0 +1,20 @@
+### Добавить вопрос
+GET http://localhost:8081/exam/java/add?question=QuestionText&answer=QuestionAnswer
+
+### Добавить вопрос
+GET http://localhost:8081/exam/java/add?question=QuestionText-1&answer=QuestionAnswer-1
+
+### Добавить вопрос
+GET http://localhost:8081/exam/java/add?question=QuestionText-2&answer=QuestionAnswer-2
+
+### Добавить вопрос
+GET http://localhost:8081/exam/java/add?question=QuestionText-3&answer=QuestionAnswer-3
+
+### Получить все вопросы
+GET http://localhost:8081/exam/java
+
+### Удалить вопрос
+GET http://localhost:8081/exam/java/remove?question=QuestionText-1&answer=QuestionAnswer-1
+
+### Получить случайные вопросы
+GET http://localhost:8081/exam/random/2
