@@ -3,29 +3,27 @@ package com.example.coursework3.service.impl;
 import com.example.coursework3.model.Question;
 import com.example.coursework3.service.ExaminerService;
 import com.example.coursework3.service.QuestionService;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.*;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
-    private final QuestionService questionService;
+    private final List<QuestionService> services;
 
-    public ExaminerServiceImpl(QuestionService questionService) {
-        this.questionService = questionService;
+    public ExaminerServiceImpl(@Qualifier("javaQuestionService") QuestionService questionService1,
+                               @Qualifier("mathQuestionService") QuestionService questionService2) {
+        services = List.of(questionService1, questionService2);
     }
 
     @Override
     public Collection<Question> getQuestions(int amount) {
-        if(amount > this.questionService.getSize()){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
+        Random random = new Random();
         Collection<Question> questions = new HashSet<>();
         while (questions.size() < amount) {
-            questions.add(this.questionService.getRandomQuestion());
+            int a = random.nextInt(2);
+            questions.add(services.get(a).getRandomQuestion());
         }
         return questions;
     }

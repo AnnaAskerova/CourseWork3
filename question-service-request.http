@@ -17,4 +17,15 @@ GET http://localhost:8081/exam/java
 GET http://localhost:8081/exam/java/remove?question=QuestionText-1&answer=QuestionAnswer-1
 
 ### Получить случайные вопросы
-GET http://localhost:8081/exam/random/2
+GET http://localhost:8081/exam/random/10
+
+
+
+### Добавить вопрос
+GET http://localhost:8081/exam/math/add?question=QuestionText&answer=QuestionAnswer
+
+### Получить все вопросы
+GET http://localhost:8081/exam/math
+
+### Удалить вопрос
+GET http://localhost:8081/exam/math/remove?question=QuestionText-1&answer=QuestionAnswer-1

@@ -1,23 +1,23 @@
 package com.example.coursework3.service.impl;
 
 import com.example.coursework3.model.Question;
+import com.example.coursework3.repository.QuestionRepository;
 import com.example.coursework3.service.QuestionService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 @Service
 public class JavaQuestionService implements QuestionService {
 
-    private final Set<Question> questions;
+    private final QuestionRepository questions;
 
-    public JavaQuestionService() {
-        this.questions = new HashSet<>();
+    public JavaQuestionService(@Qualifier("javaQuestionRepository") QuestionRepository questions) {
+        this.questions = questions;
     }
 
 
@@ -46,22 +46,22 @@ public class JavaQuestionService implements QuestionService {
 
     @Override
     public Collection<Question> getAll() {
-        return questions;
+        return questions.getAll();
     }
 
     @Override
     public Question getRandomQuestion() {
-        if (questions.isEmpty()){
+        if (questions.getAll().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NO_CONTENT);
         }
         Random random = new Random();
-        Object[] temp = questions.toArray();
+        Object[] temp = questions.getAll().toArray();
         return (Question) temp[random.nextInt(temp.length)];
     }
 
     @Override
     public int getSize() {
-        return questions.size();
+        return questions.getAll().size();
     }
 
     private void validateQuestion(Question question) {
