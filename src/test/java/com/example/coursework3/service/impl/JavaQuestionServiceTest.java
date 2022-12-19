@@ -1,7 +1,7 @@
 package com.example.coursework3.service.impl;
 
 import com.example.coursework3.model.Question;
-import com.example.coursework3.repository.impl.JavaQuestionRepository;
+import com.example.coursework3.repository.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,7 +27,7 @@ class JavaQuestionServiceTest {
     private JavaQuestionService javaQuestionService;
 
     @Mock
-    private JavaQuestionRepository questions;
+    private QuestionRepository questions;
     private static final Question QUESTION1 = new Question("test1", "test1");
     private static final Question QUESTION2 = new Question("test2", "test2");
     private final Collection<Question> setQuestion = Set.of(QUESTION1, QUESTION2);
